@@ -34,6 +34,9 @@ public class FXMLDocumentController implements Initializable {
     private TextField portTextField;
     
     @FXML
+    private TextField maxNumberTextField;
+    
+    @FXML
     private Button startButton;
     
     @FXML
@@ -43,12 +46,28 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
-        this.ipAddressTextField.setText("192.168.0.101");
+        this.ipAddressTextField.setText("10.202.4.0");
         this.portTextField.setText("5000");
         this.numOfPlayersLabel.setText("0");
         this.numOfTriesLabel.setText("0");
-        
-        this.jogo = new Jogo(this);
-    }    
+    }
+    
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+        int port = Integer.parseInt(this.portTextField.getText());
+        int maxNumber = Integer.parseInt(this.maxNumberTextField.getText());
+        this.jogo = new Jogo(this, port, maxNumber);
+        this.jogo.startGame();
+    }
+
+    void updateGUICounters() {      
+        this.numOfPlayersLabel.setText(String.valueOf(UDP.getNumOfDifferentIPs()));
+        this.numOfTriesLabel.setText(String.valueOf(UDP.getNumOfMessages()));
+    }
+
+    void updateMessages(String message) {
+        String currentState = this.messagesTextArea.getText();
+        this.messagesTextArea.setText(currentState + message + "\n");
+    }
     
 }
