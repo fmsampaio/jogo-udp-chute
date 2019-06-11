@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -19,17 +22,33 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private Label numOfPlayersLabel;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private Label numOfTriesLabel;
+    
+    @FXML
+    private TextField ipAddressTextField;
+            
+    @FXML
+    private TextField portTextField;
+    
+    @FXML
+    private Button startButton;
+    
+    @FXML
+    private TextArea messagesTextArea;
+    
+    Jogo jogo;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) {        
+        this.ipAddressTextField.setText("192.168.0.101");
+        this.portTextField.setText("5000");
+        this.numOfPlayersLabel.setText("0");
+        this.numOfTriesLabel.setText("0");
+        
+        this.jogo = new Jogo(this);
     }    
     
 }
