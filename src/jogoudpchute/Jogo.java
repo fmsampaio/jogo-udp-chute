@@ -7,10 +7,6 @@ import javafx.concurrent.Task;
 public class Jogo {
     private Integer target, numOfTries, numOfPlayers, serverPort;
 
-    public Integer getServerPort() {
-        return serverPort;
-    }
-    private final FXMLDocumentController controller;
     private boolean acertou;
 
     public void setAcertou(boolean acertou) {
@@ -24,7 +20,6 @@ public class Jogo {
         this.numOfTries = 0;
         this.numOfPlayers = 0;
         
-        this.controller = controller;
         this.acertou = false;
     }
     
@@ -47,11 +42,8 @@ public class Jogo {
     public boolean isAcertou() {
         return acertou;
     }
-    
-    
-    
-    public void updateGUICounters() {
-        this.controller.updateGUICounters();
+    public Integer getServerPort() {
+        return serverPort;
     }
     
 }

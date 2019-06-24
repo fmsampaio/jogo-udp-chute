@@ -10,22 +10,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="369.0000999999975" prefWidth="409.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jogoudpchute.FXMLDocumentController">
   <children>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="242.0" layoutY="5.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="65.0" />
     <Button id="button" fx:id="startButton" layoutX="295.0" layoutY="334.0" onAction="#handleButtonAction" text="Start game!" />
     <Label layoutX="29.0" layoutY="16.0" text="IP Address:" />
     <TextField fx:id="portTextField" layoutX="105.0" layoutY="39.0" prefWidth="57.0" text="" />
     <Label layoutX="71.0" layoutY="41.0" text="Port:" />
     <TextField fx:id="ipAddressTextField" editable="false" layoutX="105.0" layoutY="13.0" prefWidth="116.5" text="" />
     <TextArea fx:id="messagesTextArea" layoutX="15.0" layoutY="99.0" prefHeight="228.0" prefWidth="380.0" wrapText="true" />
-    <Label fx:id="numOfPlayersLabel" layoutX="265.0" layoutY="11.0" prefWidth="32.0" textAlignment="CENTER">
+    <Label fx:id="numOfTriesLabel" layoutX="355.0" layoutY="10.0" prefWidth="31.0" textAlignment="CENTER">
       <font>
         <Font size="24.0" fx:id="x1" />
       </font>
     </Label>
-    <Label layoutX="248.0" layoutY="39.0" text="Players" />
-    <Label fx:id="numOfTriesLabel" font="$x1" layoutX="355.0" layoutY="10.0" prefWidth="31.0" textAlignment="CENTER" />
-    <Label layoutX="347.0" layoutY="39.0" text="Tries" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="331.0" layoutY="5.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="65.0" />
     <Label layoutX="15.0" layoutY="68.0" text="Max number:" />
     <TextField fx:id="maxNumberTextField" layoutX="105.0" layoutY="66.0" prefWidth="65.0" text="" />
   </children>

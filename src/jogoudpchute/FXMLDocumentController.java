@@ -23,13 +23,7 @@ import javafx.scene.control.TextField;
  * @author felipe
  */
 public class FXMLDocumentController implements Initializable {
-    
-    @FXML
-    private Label numOfPlayersLabel;
-    
-    @FXML
-    private Label numOfTriesLabel;
-    
+        
     @FXML
     private TextField ipAddressTextField;
             
@@ -51,10 +45,9 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
-        this.ipAddressTextField.setText("10.202.4.0");
+        this.ipAddressTextField.setText("192.168.0.106");
         this.portTextField.setText("5000");
-        this.numOfPlayersLabel.setText("0");
-        this.numOfTriesLabel.setText("0");
+        this.maxNumberTextField.setText("500");
         this.messages = "";
     }
     
@@ -71,25 +64,7 @@ public class FXMLDocumentController implements Initializable {
                         UDPMessage guess = UDP.receiveMessage(jogo.getServerPort());
                         messages += checkGuess(guess) + "\n";
                         updateMessage(messages);
-                        
-                        Task tTries = new Task<Void>() {
-                            @Override public Void call() {
-                                updateMessage(String.valueOf(UDP.getNumOfMessages()));
-                                return null;
-                            }
-                        };
-                        numOfTriesLabel.textProperty().bind(tTries.messageProperty());
-                        new Thread(tTries).start();
-                        
-                        /*Task tPlayers = new Task<Void>() {
-                            @Override public Void call() {
-                                updateMessage(String.valueOf(UDP.getNumOfDifferentIPs()));
-                                return null;
-                            }
-                        };
-                        numOfPlayersLabel.textProperty().bind(tPlayers.messageProperty());
-                        new Thread(tPlayers).start();*/
-                        
+                                              
                         Thread.sleep(100);
                     }
                     catch(Exception e) {
@@ -114,7 +89,6 @@ public class FXMLDocumentController implements Initializable {
         String returnMessage = "";
         
         if(!guessStr.equals("")) {
-            //updateGUICounters(); //TODO fix it!
             int guessInt = Integer.parseInt(guessStr);
       
             if(guessInt == jogo.getTarget()) {
@@ -122,21 +96,16 @@ public class FXMLDocumentController implements Initializable {
                 jogo.setAcertou(true);
             }
             else if(guessInt < jogo.getTarget()) {
-                returnMessage = "O valor alvo é MAIOR que " + guessInt + "!";
+                returnMessage = guess.getIpAddress() + ": O valor alvo eh MAIOR que " + guessInt + "!";
             }
             else if(guessInt > jogo.getTarget()) {
-                returnMessage = "O valor alvo é MENOR que " + guessInt + "!";
+                returnMessage = guess.getIpAddress() + ": O valor alvo eh MENOR que " + guessInt + "!";
             }
             
             System.out.println(returnMessage);
-            UDP.sendMessage(returnMessage, guess.getIpAddress(), guess.getPort());
+            UDP.sendMessage("O valor alvo eh MAIOR que " + guessInt + "!", guess.getIpAddress(), guess.getPort());
         }
         return returnMessage;
-    }
-
-    public void updateGUICounters() {      
-        this.numOfPlayersLabel.setText(String.valueOf(UDP.getNumOfDifferentIPs()));
-        this.numOfTriesLabel.setText(String.valueOf(UDP.getNumOfMessages()));
     }
 
     public synchronized void updateMessages(String message) {
