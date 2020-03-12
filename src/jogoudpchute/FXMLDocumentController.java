@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jogoudpchute;
 
 import java.io.IOException;
@@ -45,8 +40,8 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
-        this.ipAddressTextField.setText("192.168.0.106");
-        this.portTextField.setText("5000");
+        this.ipAddressTextField.setText("10.202.3.204");
+        this.portTextField.setText("12345");
         this.maxNumberTextField.setText("500");
         this.messages = "";
     }
